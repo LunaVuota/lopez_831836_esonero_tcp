@@ -95,6 +95,10 @@ int main(int argc, char *argv[]) {
 			return -1;
 		}
 	}
+	if(port < 0 || port > 65535) {
+			printf("porta non valida");
+			return -1;
+		}
 
 	if(r_string == NULL) {
 		printf("Parametro -r obbligatorio");
