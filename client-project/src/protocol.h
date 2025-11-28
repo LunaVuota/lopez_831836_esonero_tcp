@@ -10,7 +10,7 @@
 
 // Shared application parameters
 #define DEFAULT_SERVER "127.0.0.1" //Default address
-#define SERVER_PORT 27015  // Server port (change if needed)
+#define SERVER_PORT 56700  // Server port (change if needed)
 #define BUFFER_SIZE 512    // Buffer size for messages
 #define QUEUE_SIZE 5       // Size of pending connections queue
 

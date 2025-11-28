@@ -48,6 +48,14 @@ int main(int argc, char *argv[]) {
 #endif
 
 	int my_socket;
+	unsigned int server_port = SERVER_PORT;
+	for (int i = 0; i < argc; i++) {
+		if ((strcmp(argv[i], "-p") == 0)) {
+			if (++i < argc) {
+				server_port = atoi(argv[i]);
+			}
+		}
+	}
 
 	// TODO: Create socket
 	// my_socket = socket(...);
@@ -65,10 +73,15 @@ int main(int argc, char *argv[]) {
 	// server_addr.sin_port = htons(SERVER_PORT);
 	// server_addr.sin_addr.s_addr = INADDR_ANY;
 
+	if(server_port < 0 || server_port > 65535) {
+		printf("porta non valida");
+		return -1;
+	}
+
 	struct sockaddr_in server_address;
 	server_address.sin_family = AF_INET;
 	server_address.sin_addr.s_addr = inet_addr("127.0.0.1");
-	server_address.sin_port = htons(SERVER_PORT);
+	server_address.sin_port = htons(server_port);
 
 
 	// TODO: Bind socket
@@ -99,8 +112,7 @@ int main(int argc, char *argv[]) {
 
 	struct sockaddr_in client_address;
 	int client_socket;
-	int client_len;
-	printf("wait for client");
+	//printf("wait for client");
 	char* cities[] = {"bari", "roma", "milano", "napoli", "torino", "palermo", "genova",
 		"bologna", "firenze", "venezia"};
 
